@@ -43,50 +43,36 @@ gc.collect()
 
 
 ---
-### Kubernetes YAML file
-``` javascript
+## PyTorch Memory Management
 
-apiVersion: v1
-kind: Pod
-metadata:
-  name: my-pod
-spec:
-  containers:
-  - name: container1
-    image: doc:local
-    resources:
-      limits:
-        nvidia.com/gpu: 1
-    volumeMounts:
-    - name: user-scripts
-      mountPath: /app/scripts
-    env:
-    - name: NVIDIA_VISIBLE_DEVICES
-      value: all
-    securityContext:
-      privileged: true
-      runAsUser: 0
-    command: ["sh", "-c", "echo Your pod is running && sleep infinity"]
-  volumes:
-  - name: user-scripts
-    hostPath:
-      path: /mnt/files/shared
+PyTorch provides utilities to manage and release GPU memory manually.
+
+### 1. Clear GPU Cache
+
+PyTorch caches memory on the GPU, which needs to be cleared explicitly:
+
+```python
+import torch
+
+# Release memory of tensors
+del tensor
+
+# Clear the PyTorch cache
+torch.cuda.empty_cache()
+torch.cuda.ipc_collect()
+```
+### 2. Use Context Managers
+
+Context managers automatically release memory once the code block exits, which is particularly useful to free memory after computations are completed:
+
+```python
+with torch.no_grad():
+    # Your computation here
 
 ```
-***Parameters to change***  <br/>
-```image:``` Fill with the Docker image.<br/>
-```mountPath:``` Working dir for kubernetes node.<br/>
-```path:``` Path on server will be visible on kubernetes node at mountPath.<br/>
 
-***Create the Kubernetes node***  <br/>
-```console
-   kubectl apply -f manifest.yaml
 
-```
-***Check kubernetes nodes***  <br/>
-```console
-kubectl get pods
-```
+
 ![running-pods](https://github.com/roumpakis/Server-Code-exec/blob/master/images/running-pods.JPG)
 
 ---
