@@ -88,6 +88,23 @@ tf.keras.backend.clear_session()
 ```
 ---
 
+### 2. Use Limited GPU Memory Growth
+
+By default, TensorFlow may attemp to allocate all avaliable GPU memory. To prevent this and only allocate memory as needed, enable memory growth for each GPU: 
+
+
+
+```python
+# List all GPU devices
+gpu_devices = tf.config.experimental.list_physical_devices('GPU')
+for device in gpu_devices:
+    tf.config.experimental.set_memory_growth(device, True)
+
+```
+
+
+---
+
 ### Resources Managment
 GPU time-slicing enables workloads that are scheduled on oversubscribed GPUs to interleave with one another. 
 There is no memory or fault-isolation between replicas. Internally, GPU time-slicing is used to multiplex workloads from replicas of the same underlying GPU.
