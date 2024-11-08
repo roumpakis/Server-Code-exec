@@ -70,7 +70,8 @@ with torch.no_grad():
     # Your computation here
 
 ```
----
+
+
 ## TensorFlow Memory Management
 
 TensorFlow offers options to release memory at the end of the session, which is especially helpful in interactive environments.
@@ -84,37 +85,7 @@ import tensorflow as tf
 
 # Reset TensorFlow session
 tf.keras.backend.clear_session()
-
 ```
-### 2. Use Limited GPU Memory Growth
-
-By default, TensorFlow may attempt to allocate all available GPU memory. To prevent this and only allocate memory as needed, enable memory growth for each GPU:
-
-```python
-import tensorflow as tf
-
-# List all GPU devices
-gpu_devices = tf.config.experimental.list_physical_devices('GPU')
-
-# Enable memory growth for a specific device, e.g., the first GPU
-if gpu_devices:
-    tf.config.experimental.set_memory_growth(gpu_devices[0], True)  # Replace 0 with the index of your target device
-
-```
-
-### Run code with kubernetes node  
-With ```#``` the commands will run directly on ```my-pod``` kubernetes node. <br/>
-In ```manifest.yaml``` we have mount ```path``` with ```hostPath``` and for this example it means that 
-```/mnt/files/shared``` path in server is now visible at ```/app/scripts``` path in kubernetes node.
-
-
-```console
-cd /app/scripts
-ls
-python transparency.py
-```
-![running-code](https://github.com/roumpakis/Server-Code-exec/blob/master/images/code-exec.JPG)
-
 ---
 
 ### Resources Managment
