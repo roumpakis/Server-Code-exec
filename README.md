@@ -7,7 +7,6 @@
 - [Run Code with Kubernetes Node](#run-code-with-kubernetes-node)
 - [Resources Managment](#resources-managment)
 
-![Pipeline](https://github.com/roumpakis/Server-Code-exec/blob/master/images/steps.png)
 
 ---
 
