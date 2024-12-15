@@ -101,7 +101,33 @@ for device in gpu_devices:
     tf.config.experimental.set_memory_growth(device, True)
 
 ```
+## JAX Memory Management
+#### 1. Freeing JAX GPU Memory
+JAX does not have explicit memory management commands like PyTorch, but you can leverage Python's garbage collection and JAX’s device_get to offload data to the host:
+ ```python
+import jax
+import gc
 
+# Delete large objects and call garbage collection
+large_array = jax.device_get(large_array)  # Moves data from device to host
+
+del large_array
+
+gc.collect()
+```
+
+#### 2. Using JAX with Context Managers
+Context managers help control memory by ensuring computations are limited to a specific block and releasing resources after execution:
+ ```python
+from jax import jit
+
+@jit
+def computation(x):
+    return x ** 2
+
+with jax.default_device(jax.devices("gpu")[0]):
+    result = computation(5)
+```
 
 ---
 
