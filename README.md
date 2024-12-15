@@ -7,9 +7,6 @@
 - [TensorFlow Memory Management](#tensorflow-memory-management)
 - [JAX Memory Management](#jax-memory-management)
 - [Monitoring and Verifying Memory Release](#monitoring-and-verifying-memory-release)
-- [Example Script](#example-script)
-- [Kubernetes YAML File](#kubernetes-yaml-file)
-- [Run Code with Kubernetes Node](#run-code-with-kubernetes-node)
 - [Resources Managment](#resources-managment)
 
 
@@ -130,7 +127,25 @@ with jax.default_device(jax.devices("gpu")[0]):
 ```
 
 ---
+## Monitoring and Verifying Memory Release
 
+### 1. Using Python Libraries
+PyTorch
+ ```python
+import torch
+print(torch.cuda.memory_summary())
+```
+Tensorflow:
+ ```python
+import tensorflow as tf
+
+gpus = tf.config.experimental.list_physical_devices('GPU')
+for gpu in gpus:
+    details = tf.config.experimental.get_memory_info(gpu)
+    print(details)
+```
+
+---
 ### Resources Managment
 GPU time-slicing enables workloads that are scheduled on oversubscribed GPUs to interleave with one another. 
 There is no memory or fault-isolation between replicas. Internally, GPU time-slicing is used to multiplex workloads from replicas of the same underlying GPU.
