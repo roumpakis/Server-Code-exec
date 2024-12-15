@@ -140,7 +140,7 @@ print(torch.cuda.memory_summary())
 
 gpustats:
 
-![running-code](https://github.com/roumpakis/Server-Code-exec/blob/master/images/specific.JPG)
+![running-code](https://github.com/roumpakis/Server-Code-exec/blob/ssh-users/images/tool.png)
 
 ---
 ### Resources Managment
