@@ -135,15 +135,12 @@ PyTorch
 import torch
 print(torch.cuda.memory_summary())
 ```
-Tensorflow:
- ```python
-import tensorflow as tf
 
-gpus = tf.config.experimental.list_physical_devices('GPU')
-for gpu in gpus:
-    details = tf.config.experimental.get_memory_info(gpu)
-    print(details)
-```
+![running-code](https://github.com/roumpakis/Server-Code-exec/blob/master/images/specific.JPG)
+
+gpustats:
+
+![running-code](https://github.com/roumpakis/Server-Code-exec/blob/master/images/specific.JPG)
 
 ---
 ### Resources Managment
