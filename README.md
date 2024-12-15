@@ -139,9 +139,25 @@ print(torch.cuda.memory_summary())
 ![running-code](https://github.com/roumpakis/Server-Code-exec/blob/ssh-users/images/torch1.png)
 
 gpustats:
+```python
+gpustats
+```
 
 ![running-code](https://github.com/roumpakis/Server-Code-exec/blob/ssh-users/images/tool.png)
 
+### 2. Using nvidia-smi (GPU Memory)
+Current GPU Utilization
+```python
+nvidia-smi
+```
+Real-time GPU Monitoring
+```python
+watch -n 1 nvidia-smi
+```
+ GPU Usage
+ ```python
+ nvidia-smi --query-gpu=utilization.gpu,utilization.memory --format=csv
+```
 ---
 ### Resources Managment
 GPU time-slicing enables workloads that are scheduled on oversubscribed GPUs to interleave with one another. 
