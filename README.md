@@ -136,7 +136,7 @@ import torch
 print(torch.cuda.memory_summary())
 ```
 
-![running-code](https://github.com/roumpakis/Server-Code-exec/blob/master/images/specific.JPG)
+![running-code](https://github.com/roumpakis/Server-Code-exec/blob/ssh-users/images/torch1.png)
 
 gpustats:
 
